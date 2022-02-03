@@ -6,7 +6,7 @@ const {
   createReply,
   deleteComment,
   toggleUpvote,
-} = require('../controllers/message');
+} = require('../controllers/comment');
 
 router.get('/', getComments);
 router.patch('/upvote/:id', toggleUpvote);

@@ -1,4 +1,4 @@
-const Message = require('../models/Message');
+const Comment = require('../models/comment');
 
 const getComments = (req, res) => {
   res.send('get comments');
