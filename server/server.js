@@ -1,9 +1,10 @@
 const express = require('express');
 const app = express();
 
-app.get('/', (req, res) => {
-  res.send('back end');
-});
+// routers
+const messageRouter = require('./routes/message');
+
+app.use('/api/v1/message', messageRouter);
 
 const port = 5000;
 
