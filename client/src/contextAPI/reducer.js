@@ -7,6 +7,7 @@ const reducer = (state, { type, payload }) => {
   if (type === FETCH_COMMENTS_ERROR) {
     return { ...state, loading: false, error: true, messages: [] };
   }
+
   return state;
 };
 

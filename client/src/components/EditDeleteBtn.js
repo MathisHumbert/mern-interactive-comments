@@ -1,8 +1,7 @@
 import { FaTrash, FaPen } from 'react-icons/fa';
 import styled from 'styled-components';
 
-const EditDeleteBtn = ({ id }) => {
-  console.log(id);
+const EditDeleteBtn = ({ setEdit }) => {
   return (
     <Wrapper>
       <button className='delete-btn'>
@@ -10,7 +9,7 @@ const EditDeleteBtn = ({ id }) => {
         <h2>Delete</h2>
       </button>
       <button className='edit-btn'>
-        <FaPen className='icon' />
+        <FaPen className='icon' onClick={() => setEdit((edit) => !edit)} />
         <h2>Edit</h2>
       </button>
     </Wrapper>

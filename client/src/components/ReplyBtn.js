@@ -1,10 +1,13 @@
 import styled from 'styled-components';
 import { FaReply } from 'react-icons/fa';
 
-const ReplyBtn = ({ id }) => {
-  console.log(id);
+const ReplyBtn = ({ setReply }) => {
   return (
-    <Wrapper className='reply-btn'>
+    <Wrapper
+      className='reply-btn'
+      onClick={() => setReply((reply) => !reply)}
+      type='button'
+    >
       <FaReply className='icon' />
       <h2>Reply</h2>
     </Wrapper>

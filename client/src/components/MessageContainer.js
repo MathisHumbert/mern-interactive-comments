@@ -4,9 +4,16 @@ import Message from './Message';
 const MessageContainer = ({ message }) => {
   return (
     <Wrapper>
-      <Message main={true} {...message} />
+      <Message {...message} id={message.id} />
       {message.replies.map((reply) => {
-        return <Message key={reply.id} {...reply} main={false} />;
+        return (
+          <Message
+            key={reply.id}
+            {...reply}
+            id={message.id}
+            replyID={reply.id}
+          />
+        );
       })}
     </Wrapper>
   );
