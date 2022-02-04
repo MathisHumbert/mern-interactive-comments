@@ -5,12 +5,11 @@ import EditDeleteBtn from './EditDeleteBtn';
 
 const user = 'juliusomo';
 
-const FooterMessage = ({ username }) => {
-  console.log(username);
+const FooterMessage = ({ username, id }) => {
   return (
     <Wrapper>
-      <UpvoteBtn />
-      {username === user ? <EditDeleteBtn /> : <ReplyBtn />}
+      <UpvoteBtn id={id} />
+      {username === user ? <EditDeleteBtn id={id} /> : <ReplyBtn id={id} />}
     </Wrapper>
   );
 };

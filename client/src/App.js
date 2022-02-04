@@ -1,27 +1,22 @@
-import { useEffect, useState } from 'react';
 import styled from 'styled-components';
-import axios from 'axios';
 import MessageContainer from './components/MessageContainer';
+import { useGlobalContext } from './contextAPI/context';
 
 const App = () => {
-  const [messages, setMessages] = useState([]);
-  const fetchData = async () => {
-    try {
-      const { data } = await axios('/api/v1/comments');
-      setMessages(data);
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  const { messages, loading, error } = useGlobalContext();
 
-  useEffect(() => {
-    fetchData();
-  }, []);
+  if (loading) {
+    return <h1>loading...</h1>;
+  }
+
+  if (error) {
+    return <h1>error...</h1>;
+  }
 
   return (
     <Wrapper>
       {messages.map((message) => {
-        return <MessageContainer key={message._id} message={message} />;
+        return <MessageContainer key={message.id} message={message} />;
       })}
     </Wrapper>
   );

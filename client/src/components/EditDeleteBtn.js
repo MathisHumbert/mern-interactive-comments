@@ -1,7 +1,8 @@
 import { FaTrash, FaPen } from 'react-icons/fa';
 import styled from 'styled-components';
 
-const EditDeleteBtn = () => {
+const EditDeleteBtn = ({ id }) => {
+  console.log(id);
   return (
     <Wrapper>
       <button className='delete-btn'>

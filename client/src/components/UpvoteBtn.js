@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
-const UpvoteBtn = () => {
+const UpvoteBtn = ({ id }) => {
   return (
     <Wrapper className='upvote-btn'>
       <FaPlus className='icon' />

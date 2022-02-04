@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 import { FaReply } from 'react-icons/fa';
 
-const ReplyBtn = () => {
+const ReplyBtn = ({ id }) => {
+  console.log(id);
   return (
     <Wrapper className='reply-btn'>
       <FaReply className='icon' />

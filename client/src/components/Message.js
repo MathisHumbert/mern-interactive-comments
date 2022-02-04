@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import FooterMessage from './FooterMessage';
 import HeaderMessage from './HeaderMessage';
 
-const Message = ({ main, user, createdAt, content, replyingTo }) => {
+const Message = ({ main, user, createdAt, content, replyingTo, id }) => {
   return (
     <Wrapper
       className={main ? 'main-message single-message' : 'single-message'}
@@ -11,7 +11,7 @@ const Message = ({ main, user, createdAt, content, replyingTo }) => {
       <p>
         {replyingTo && <span>@{replyingTo}</span>} {content}
       </p>
-      <FooterMessage username={user.username} />
+      <FooterMessage username={user.username} id={id} />
     </Wrapper>
   );
 };
