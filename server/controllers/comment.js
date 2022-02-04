@@ -6,8 +6,17 @@ const getComments = async (req, res) => {
   res.status(StatusCodes.OK).json(comments);
 };
 
-const createReply = (req, res) => {
-  res.send('create reply');
+const createReply = async (req, res) => {
+  const body = req.body;
+  const { id } = req.params;
+
+  const comment = await Comment.findOne({ id });
+  const newReplies = [...comment.replies, body];
+  comment.replies = newReplies;
+
+  comment.save();
+
+  res.status(StatusCodes.OK).json({ msg: 'Reply Created' });
 };
 
 const deleteComment = (req, res) => {
