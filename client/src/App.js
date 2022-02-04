@@ -21,15 +21,17 @@ const App = () => {
   return (
     <Wrapper>
       {messages.map((message) => {
-        console.log(message);
-        return <MessageContainer key={message._id} {...message} />;
+        return <MessageContainer key={message._id} message={message} />;
       })}
     </Wrapper>
   );
 };
 
 const Wrapper = styled.main`
-  background: red;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 2rem 1rem;
 `;
 
 export default App;

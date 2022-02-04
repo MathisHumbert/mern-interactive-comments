@@ -1,18 +1,11 @@
 import styled from 'styled-components';
 import Message from './Message';
 
-const MessageContainer = ({
-  _id,
-  content,
-  createdAt,
-  replies,
-  score,
-  user,
-}) => {
+const MessageContainer = ({ message }) => {
   return (
     <Wrapper>
-      <Message main={true} />
-      {replies.map((reply) => {
+      <Message main={true} {...message} />
+      {message.replies.map((reply) => {
         return <Message key={reply.id} {...reply} main={false} />;
       })}
     </Wrapper>
@@ -20,7 +13,8 @@ const MessageContainer = ({
 };
 
 const Wrapper = styled.section`
-  margin: 1rem 0;
-  border: 1px solid blue;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
 `;
 export default MessageContainer;
