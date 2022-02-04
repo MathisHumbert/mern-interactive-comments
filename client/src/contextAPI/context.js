@@ -49,7 +49,12 @@ const AppProvider = ({ children }) => {
       user,
     };
 
-    await axios.patch(`${url}/${id}`, replyObj);
+    try {
+      await axios.patch(`${url}/${id}`, replyObj);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: FETCH_COMMENTS_ERROR });
+    }
 
     fetchMessages();
   };
@@ -64,7 +69,26 @@ const AppProvider = ({ children }) => {
       replies: [],
     };
 
-    await axios.post(url, messageObj);
+    try {
+      await axios.post(url, messageObj);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: FETCH_COMMENTS_ERROR });
+    }
+
+    fetchMessages();
+  };
+
+  const editMessage = async (content, id, replyID) => {
+    try {
+      const { data } = await axios.patch(`${url}?id=${id}&replyID=${replyID}`, {
+        content,
+      });
+      console.log(data);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: FETCH_COMMENTS_ERROR });
+    }
 
     fetchMessages();
   };
@@ -74,7 +98,9 @@ const AppProvider = ({ children }) => {
   }, []);
 
   return (
-    <AppContext.Provider value={{ ...state, createReply, createMessage }}>
+    <AppContext.Provider
+      value={{ ...state, createReply, createMessage, editMessage }}
+    >
       {children}
     </AppContext.Provider>
   );

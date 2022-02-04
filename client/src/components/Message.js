@@ -57,7 +57,7 @@ const Wrapper = styled.div`
 
   &.reply-message {
     padding-left: 1rem;
-    border-left: 2px solid #e9ebf0;
+    border-left: 2px solid var(--border-color);
   }
 
   article {

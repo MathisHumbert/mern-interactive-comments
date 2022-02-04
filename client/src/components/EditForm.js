@@ -1,13 +1,19 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useGlobalContext } from '../contextAPI/context';
 
 const EditForm = ({ id, replyID, setEdit, content }) => {
+  const { editMessage } = useGlobalContext();
   const [textValue, setTextValue] = useState(content);
 
   const handleSubmit = () => {
-    console.log(textValue);
+    if (textValue.trim() === content) {
+      setEdit((edit) => !edit);
+      return;
+    }
+
+    editMessage(textValue, id, replyID);
     setEdit((edit) => !edit);
-    // send data
   };
   return (
     <Wrapper onSubmit={(e) => e.preventDefault()}>
