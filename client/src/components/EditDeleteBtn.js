@@ -8,8 +8,8 @@ const EditDeleteBtn = ({ setEdit }) => {
         <FaTrash className='icon' />
         <h2>Delete</h2>
       </button>
-      <button className='edit-btn'>
-        <FaPen className='icon' onClick={() => setEdit((edit) => !edit)} />
+      <button className='edit-btn' onClick={() => setEdit((edit) => !edit)}>
+        <FaPen className='icon' />
         <h2>Edit</h2>
       </button>
     </Wrapper>
