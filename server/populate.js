@@ -3,7 +3,7 @@ require('dotenv').config();
 const connectDB = require('./db/connect');
 const Comment = require('./models/comment');
 
-const jsonComments = require('./data.json');
+const jsonComments = require('./comments.json');
 
 const start = async () => {
   try {

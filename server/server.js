@@ -7,7 +7,15 @@ const app = express();
 const connectDB = require('./db/connect');
 const commentRouter = require('./routes/comment');
 
+const notFoundMiddleware = require('./middleware/not-found');
+const errorMiddleware = require('./middleware/error-handler');
+
+app.use(express.json());
+
 app.use('/api/v1/comments', commentRouter);
+
+app.use(notFoundMiddleware);
+app.use(errorMiddleware);
 
 const port = process.env.PORT || 5000;
 

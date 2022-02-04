@@ -15,7 +15,7 @@ const CommentSchema = mongoose.Schema({
     type: Object,
   },
   replies: {
-    type: Object,
+    type: Array,
   },
 });
 

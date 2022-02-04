@@ -1,7 +1,7 @@
 const Comment = require('../models/comment');
 
 const getComments = (req, res) => {
-  res.send('get comments');
+  const comments = await Comment.find({});
 };
 
 const createReply = (req, res) => {
