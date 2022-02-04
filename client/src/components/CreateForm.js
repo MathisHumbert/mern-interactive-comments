@@ -1,12 +1,10 @@
 import { useState } from 'react';
 import styled from 'styled-components';
 
-const ReplyForm = ({ id, username, setReply }) => {
-  const [textValue, setTextValue] = useState(`@${username}`);
-
+const CreateForm = () => {
+  const [textValue, setTextValue] = useState();
   const handleSubmit = () => {
     console.log(textValue);
-    setReply((reply) => !reply);
     // send data
   };
 
@@ -18,7 +16,7 @@ const ReplyForm = ({ id, username, setReply }) => {
         onChange={(e) => setTextValue(e.target.value)}
       ></textarea>
       <button type='submit' className='main-btn' onClick={handleSubmit}>
-        reply
+        send
       </button>
     </Wrapper>
   );
@@ -46,4 +44,4 @@ const Wrapper = styled.form`
   }
 `;
 
-export default ReplyForm;
+export default CreateForm;

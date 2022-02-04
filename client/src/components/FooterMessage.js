@@ -5,10 +5,10 @@ import EditDeleteBtn from './EditDeleteBtn';
 
 const user = 'juliusomo';
 
-const FooterMessage = ({ username, id, setReply, setEdit, replyID }) => {
+const FooterMessage = ({ username, id, setReply, setEdit, replyID, score }) => {
   return (
     <Wrapper>
-      <UpvoteBtn id={id} replyID={replyID} />
+      <UpvoteBtn id={id} replyID={replyID} score={score} />
       {username === user ? (
         <EditDeleteBtn setEdit={setEdit} />
       ) : (

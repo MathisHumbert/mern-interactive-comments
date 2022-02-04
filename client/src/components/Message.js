@@ -5,7 +5,15 @@ import HeaderMessage from './HeaderMessage';
 import ReplyForm from './ReplyForm';
 import EditForm from './EditForm';
 
-const Message = ({ user, createdAt, content, replyingTo, id, replyID }) => {
+const Message = ({
+  user,
+  createdAt,
+  content,
+  replyingTo,
+  id,
+  replyID,
+  score,
+}) => {
   const [edit, setEdit] = useState(false);
   const [reply, setReply] = useState(false);
 
@@ -32,6 +40,7 @@ const Message = ({ user, createdAt, content, replyingTo, id, replyID }) => {
             replyID={replyID}
             setReply={setReply}
             setEdit={setEdit}
+            score={score}
           />
         )}
       </article>

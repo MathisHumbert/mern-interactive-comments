@@ -1,11 +1,11 @@
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from 'react-icons/fa';
 
-const UpvoteBtn = ({ id, replyID }) => {
+const UpvoteBtn = ({ id, replyID, score }) => {
   return (
     <Wrapper className='upvote-btn'>
       <FaPlus className='icon' />
-      <h2>12</h2>
+      <h2>{score}</h2>
       <FaMinus className='icon' />
     </Wrapper>
   );
