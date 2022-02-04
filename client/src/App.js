@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import styled from 'styled-components';
 import axios from 'axios';
 import MessageContainer from './components/MessageContainer';
 
@@ -18,12 +19,17 @@ const App = () => {
   }, []);
 
   return (
-    <main>
+    <Wrapper>
       {messages.map((message) => {
+        console.log(message);
         return <MessageContainer key={message._id} {...message} />;
       })}
-    </main>
+    </Wrapper>
   );
 };
+
+const Wrapper = styled.main`
+  background: red;
+`;
 
 export default App;
