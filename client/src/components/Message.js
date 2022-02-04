@@ -11,7 +11,7 @@ const Message = ({ main, user, createdAt, content, replyingTo }) => {
       <p>
         {replyingTo && <span>@{replyingTo}</span>} {content}
       </p>
-      <FooterMessage />
+      <FooterMessage username={user.username} />
     </Wrapper>
   );
 };
