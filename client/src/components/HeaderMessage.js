@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 
-const HeaderInfo = ({ image, username, createdAt }) => {
-  console.log(image);
+const HeaderMessage = ({ image, username, createdAt }) => {
   return (
     <Wrapper>
       <img src={image.png} alt={username} />
@@ -21,4 +20,4 @@ const Wrapper = styled.header`
   }
 `;
 
-export default HeaderInfo;
+export default HeaderMessage;
