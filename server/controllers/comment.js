@@ -1,7 +1,9 @@
 const Comment = require('../models/comment');
+const { StatusCodes } = require('http-status-codes');
 
-const getComments = (req, res) => {
+const getComments = async (req, res) => {
   const comments = await Comment.find({});
+  res.status(StatusCodes.OK).json(comments);
 };
 
 const createReply = (req, res) => {
