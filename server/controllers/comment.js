@@ -31,8 +31,6 @@ const editMessage = async (req, res) => {
   const { content: newContent } = req.body;
   const { id, replyID } = req.query;
 
-  // let comment = await Comment.findOne({ id });
-
   if (replyID === 'undefined') {
     await Comment.findOneAndUpdate({ id }, { content: newContent });
   } else {

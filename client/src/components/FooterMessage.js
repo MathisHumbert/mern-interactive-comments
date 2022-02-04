@@ -10,7 +10,7 @@ const FooterMessage = ({ username, id, setReply, setEdit, replyID, score }) => {
     <Wrapper>
       <UpvoteBtn id={id} replyID={replyID} score={score} />
       {username === user ? (
-        <EditDeleteBtn setEdit={setEdit} />
+        <EditDeleteBtn setEdit={setEdit} id={id} replyID={replyID} />
       ) : (
         <ReplyBtn setReply={setReply} />
       )}

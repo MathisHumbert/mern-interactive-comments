@@ -1,10 +1,15 @@
 import { FaTrash, FaPen } from 'react-icons/fa';
 import styled from 'styled-components';
+import { useGlobalContext } from '../contextAPI/context';
 
-const EditDeleteBtn = ({ setEdit }) => {
+const EditDeleteBtn = ({ setEdit, id, replyID }) => {
+  const { toggleDeleteAside } = useGlobalContext();
   return (
     <Wrapper>
-      <button className='delete-btn'>
+      <button
+        className='delete-btn'
+        onClick={() => toggleDeleteAside(id, replyID)}
+      >
         <FaTrash className='icon' />
         <h2>Delete</h2>
       </button>

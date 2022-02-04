@@ -1,5 +1,6 @@
 import styled from 'styled-components';
 import CreateForm from './components/CreateForm';
+import DeleteAside from './components/DeleteAside';
 import MessageContainer from './components/MessageContainer';
 import { useGlobalContext } from './contextAPI/context';
 
@@ -20,6 +21,7 @@ const App = () => {
         return <MessageContainer key={message.id} message={message} />;
       })}
       <CreateForm />
+      <DeleteAside />
     </Wrapper>
   );
 };

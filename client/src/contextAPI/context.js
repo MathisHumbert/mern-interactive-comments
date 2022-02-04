@@ -1,6 +1,10 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
-import { FETCH_COMMENTS_ERROR, FETCH_COMMENTS_SUCCESS } from './actions';
+import {
+  FETCH_COMMENTS_ERROR,
+  FETCH_COMMENTS_SUCCESS,
+  TOGGLE_DELETE_ASIDE,
+} from './actions';
 import reducer from './reducer';
 import uniqid from 'uniqid';
 
@@ -17,17 +21,20 @@ const url = '/api/v1/comments';
 const initialState = {
   loading: true,
   error: false,
-  edit: false,
-  editID: '',
-  reply: false,
-  replyID: '',
   messages: [],
+  deleteAside: false,
+  deleteID: '',
+  deleteReplyID: '',
 };
 
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const toggleDeleteAside = (id, replyID) => {
+    dispatch({ type: TOGGLE_DELETE_ASIDE, payload: { id, replyID } });
+  };
 
   const fetchMessages = async () => {
     try {
@@ -81,10 +88,9 @@ const AppProvider = ({ children }) => {
 
   const editMessage = async (content, id, replyID) => {
     try {
-      const { data } = await axios.patch(`${url}?id=${id}&replyID=${replyID}`, {
+      await axios.patch(`${url}?id=${id}&replyID=${replyID}`, {
         content,
       });
-      console.log(data);
     } catch (error) {
       console.log(error);
       dispatch({ type: FETCH_COMMENTS_ERROR });
@@ -93,13 +99,24 @@ const AppProvider = ({ children }) => {
     fetchMessages();
   };
 
+  const deleteMessage = async (id, replyID) => {
+    console.log(id, replyID);
+  };
+
   useEffect(() => {
     fetchMessages();
   }, []);
 
   return (
     <AppContext.Provider
-      value={{ ...state, createReply, createMessage, editMessage }}
+      value={{
+        ...state,
+        toggleDeleteAside,
+        createReply,
+        createMessage,
+        editMessage,
+        deleteMessage,
+      }}
     >
       {children}
     </AppContext.Provider>
