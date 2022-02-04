@@ -1,13 +1,17 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useGlobalContext } from '../contextAPI/context';
 
 const ReplyForm = ({ id, username, setReply }) => {
   const [textValue, setTextValue] = useState(`@${username}`);
+  const { createReply } = useGlobalContext();
 
   const handleSubmit = () => {
-    console.log(textValue);
+    if (textValue.trim() === `@${username}`) return;
+
     setReply((reply) => !reply);
-    // send data
+    const content = textValue.trim().slice(username.length + 1);
+    createReply(content, id, username);
   };
 
   return (

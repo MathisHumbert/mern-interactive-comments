@@ -1,10 +1,15 @@
 import { useState } from 'react';
 import styled from 'styled-components';
+import { useGlobalContext } from '../contextAPI/context';
 
 const CreateForm = () => {
+  const { createMessage } = useGlobalContext();
   const [textValue, setTextValue] = useState();
+
   const handleSubmit = () => {
-    console.log(textValue);
+    if (!textValue.trim()) return;
+    setTextValue('');
+    createMessage(textValue);
     // send data
   };
 

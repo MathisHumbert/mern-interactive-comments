@@ -13,12 +13,13 @@ const Message = ({
   id,
   replyID,
   score,
+  main,
 }) => {
   const [edit, setEdit] = useState(false);
   const [reply, setReply] = useState(false);
 
   return (
-    <Wrapper>
+    <Wrapper className={main ? 'main-message' : 'reply-message'}>
       <article>
         <HeaderMessage {...user} createdAt={createdAt} />
         {edit ? (
@@ -52,6 +53,13 @@ const Message = ({
 };
 
 const Wrapper = styled.div`
+  padding-bottom: 1rem;
+
+  &.reply-message {
+    padding-left: 1rem;
+    border-left: 2px solid #e9ebf0;
+  }
+
   article {
     background: #ffffff;
     padding: 1rem;

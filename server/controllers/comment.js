@@ -6,20 +6,28 @@ const getComments = async (req, res) => {
   res.status(StatusCodes.OK).json(comments);
 };
 
+const createMessage = async (req, res) => {
+  const comment = req.body;
+
+  const comments = await Comment.create(comment);
+
+  res.status(StatusCodes.CREATED).json({ msg: 'Message Created' });
+};
+
 const createReply = async (req, res) => {
-  const body = req.body;
+  const reply = req.body;
   const { id } = req.params;
 
   const comment = await Comment.findOne({ id });
-  const newReplies = [...comment.replies, body];
+  const newReplies = [...comment.replies, reply];
   comment.replies = newReplies;
 
   comment.save();
 
-  res.status(StatusCodes.OK).json({ msg: 'Reply Created' });
+  res.status(StatusCodes.CREATED).json({ msg: 'Reply Created' });
 };
 
-const deleteComment = (req, res) => {
+const deleteComment = async (req, res) => {
   res.send('delete comment');
 };
 
@@ -27,4 +35,10 @@ const toggleUpvote = (req, res) => {
   res.send('toggle upvote');
 };
 
-module.exports = { getComments, createReply, deleteComment, toggleUpvote };
+module.exports = {
+  getComments,
+  createReply,
+  deleteComment,
+  toggleUpvote,
+  createMessage,
+};

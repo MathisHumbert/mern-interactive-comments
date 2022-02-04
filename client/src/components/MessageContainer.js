@@ -4,7 +4,7 @@ import Message from './Message';
 const MessageContainer = ({ message }) => {
   return (
     <Wrapper>
-      <Message {...message} id={message.id} />
+      <Message {...message} id={message.id} main={true} />
       {message.replies.map((reply) => {
         return (
           <Message
@@ -12,6 +12,7 @@ const MessageContainer = ({ message }) => {
             {...reply}
             id={message.id}
             replyID={reply.id}
+            main={false}
           />
         );
       })}
@@ -20,8 +21,8 @@ const MessageContainer = ({ message }) => {
 };
 
 const Wrapper = styled.section`
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
+  div:last-child {
+    padding-bottom: 0;
+  }
 `;
 export default MessageContainer;
