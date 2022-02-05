@@ -44,11 +44,23 @@ const editMessage = async (req, res) => {
     await Comment.findOneAndUpdate({ id }, { replies: newReplies });
   }
 
-  res.status(StatusCodes.OK).json('updated');
+  res.status(StatusCodes.OK).json({ msg: 'Message Updated' });
 };
 
 const deleteComment = async (req, res) => {
-  res.send('delete comment');
+  const { id, replyID } = req.query;
+
+  if (replyID === 'undefined') {
+    await Comment.findOneAndDelete({ id });
+  } else {
+    let tempComment = await Comment.findOne({ id });
+    const newReplies = tempComment.replies.filter(
+      (item) => item.id !== replyID
+    );
+    await Comment.findOneAndUpdate({ id }, { replies: newReplies });
+  }
+
+  res.status(StatusCodes.OK).json({ msg: 'Message Deleted' });
 };
 
 const toggleUpvote = (req, res) => {

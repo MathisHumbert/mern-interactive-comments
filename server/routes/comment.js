@@ -10,8 +10,13 @@ const {
   editMessage,
 } = require('../controllers/comment');
 
-router.route('/').get(getComments).post(createMessage).patch(editMessage);
+router
+  .route('/')
+  .get(getComments)
+  .post(createMessage)
+  .patch(editMessage)
+  .delete(deleteComment);
 router.patch('/upvote/:id', toggleUpvote);
-router.route('/:id').patch(createReply).delete(deleteComment);
+router.patch('/:id', createReply);
 
 module.exports = router;

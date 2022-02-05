@@ -100,7 +100,14 @@ const AppProvider = ({ children }) => {
   };
 
   const deleteMessage = async (id, replyID) => {
-    console.log(id, replyID);
+    try {
+      await axios.delete(`${url}?id=${id}&replyID=${replyID}`);
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: FETCH_COMMENTS_ERROR });
+    }
+
+    fetchMessages();
   };
 
   useEffect(() => {

@@ -27,7 +27,10 @@ const DeleteAside = () => {
           </button>
           <button
             className='main-btn delete'
-            onClick={() => deleteMessage(deleteID, deleteReplyID)}
+            onClick={() => {
+              deleteMessage(deleteID, deleteReplyID);
+              toggleDeleteAside('', '');
+            }}
           >
             yes, delete
           </button>
