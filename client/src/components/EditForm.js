@@ -36,5 +36,16 @@ const Wrapper = styled.form`
     align-self: flex-end;
     margin-top: 16px;
   }
+
+  textarea {
+    height: 124px;
+  }
+
+  @media (min-width: 1440px) {
+    textarea {
+      width: calc(100% - 64px);
+      margin-left: 64px;
+    }
+  }
 `;
 export default EditForm;

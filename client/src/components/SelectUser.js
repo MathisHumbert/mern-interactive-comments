@@ -54,5 +54,18 @@ const Wrapper = styled.section`
         rgba(0, 0, 0, 0.3) 0px 30px 60px -30px;
     }
   }
+
+  @media (min-width: 752px) {
+    .user-container {
+      display: grid;
+      grid-template-columns: 150px 150px;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    article {
+      padding: 24px;
+    }
+  }
 `;
 export default SelectUser;

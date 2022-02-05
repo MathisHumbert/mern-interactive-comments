@@ -44,6 +44,15 @@ const Wrapper = styled.header`
     font-size: 13px;
     font-weight: 500;
   }
+
+  p {
+    line-height: 0;
+  }
+
+  @media (min-width: 1440px) {
+    margin-left: 64px;
+    margin-bottom: 22px;
+  }
 `;
 
 export default HeaderMessage;

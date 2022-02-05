@@ -40,6 +40,16 @@ const Wrapper = styled.button`
       color: var(--moderate-blue-color);
     }
   }
+
+  @media (min-width: 1440px) {
+    position: absolute;
+    top: 24px;
+    flex-direction: column;
+    width: 40px;
+    height: 100px;
+    justify-content: space-between;
+    padding: 12px;
+  }
 `;
 
 export default UpvoteBtn;

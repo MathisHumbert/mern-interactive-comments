@@ -56,9 +56,33 @@ const Wrapper = styled.form`
     text-transform: uppercase;
     cursor: pointer;
     transition: color 0.3s ease;
+    line-height: 16px;
 
     &:hover {
       color: var(--dark-blue-color);
+    }
+  }
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 16px;
+    padding: 24px;
+
+    img {
+      position: inherit;
+      bottom: 0;
+    }
+
+    button {
+      margin-top: 0;
+      align-self: inherit;
+    }
+
+    p {
+      left: inherit;
+      bottom: 24px;
+
+      right: 24px;
     }
   }
 `;

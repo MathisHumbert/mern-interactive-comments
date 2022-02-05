@@ -33,6 +33,13 @@ const Wrapper = styled.button`
       color: var(--light-grayish-blue-color);
     }
   }
+
+  @media (min-width: 1440px) {
+    position: absolute;
+    right: 24px;
+    top: 28px;
+    transform: translateY(50%);
+  }
 `;
 
 export default ReplyBtn;

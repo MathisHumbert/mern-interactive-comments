@@ -30,20 +30,19 @@ const Message = ({
             content={content}
           />
         ) : (
-          <p>
+          <p className='content'>
             {replyingTo && <span>@{replyingTo}</span>} {content}
           </p>
         )}
-        {!edit && (
-          <FooterMessage
-            username={user.username}
-            id={id}
-            replyID={replyID}
-            setReply={setReply}
-            setEdit={setEdit}
-            score={score}
-          />
-        )}
+
+        <FooterMessage
+          username={user.username}
+          id={id}
+          replyID={replyID}
+          setReply={setReply}
+          setEdit={setEdit}
+          score={score}
+        />
       </article>
       {reply && (
         <ReplyForm id={id} username={user.username} setReply={setReply} />
@@ -67,11 +66,24 @@ const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
     gap: 1rem;
+    position: relative;
   }
 
-  p span {
+  .content span {
     color: var(--moderate-blue-color);
     font-weight: 500;
+  }
+
+  @media (min-width: 1440px) {
+    article {
+      padding: 24px;
+      gap: 0;
+      min-height: 148px;
+    }
+
+    .content {
+      margin-left: 64px;
+    }
   }
 `;
 export default Message;

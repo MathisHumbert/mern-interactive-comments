@@ -72,6 +72,12 @@ const Wrapper = styled.div`
       }
     }
   }
+
+  @media (min-width: 1440px) {
+    position: absolute;
+    right: 24px;
+    top: 32.5px;
+  }
 `;
 
 export default EditDeleteBtn;

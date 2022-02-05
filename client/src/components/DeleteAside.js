@@ -94,5 +94,11 @@ const Wrapper = styled.aside`
       background: var(--pale-red-color);
     }
   }
+
+  @media (min-width: 1440px) {
+    .container {
+      padding: 32px;
+    }
+  }
 `;
 export default DeleteAside;

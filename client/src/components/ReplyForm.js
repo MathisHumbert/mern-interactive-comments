@@ -48,6 +48,22 @@ const Wrapper = styled.form`
     position: absolute;
     bottom: 1rem;
   }
+
+  @media (min-width: 1440px) {
+    flex-direction: row;
+    gap: 16px;
+    padding: 24px;
+
+    img {
+      position: inherit;
+      bottom: 0;
+    }
+
+    button {
+      margin-top: 0;
+      align-self: inherit;
+    }
+  }
 `;
 
 export default ReplyForm;
