@@ -3,7 +3,7 @@ import { useGlobalContext } from '../contextAPI/context';
 import { usersData } from '../data';
 
 const SelectUser = () => {
-  const { userSelected } = useGlobalContext();
+  const { userLogin } = useGlobalContext();
 
   return (
     <Wrapper>
@@ -12,7 +12,7 @@ const SelectUser = () => {
         {usersData.map((item) => {
           const { id, name, img } = item;
           return (
-            <article key={id} onClick={() => userSelected(name)}>
+            <article key={id} onClick={() => userLogin(name)}>
               <img src={img} alt='name' />
               <h2>{name}</h2>
             </article>

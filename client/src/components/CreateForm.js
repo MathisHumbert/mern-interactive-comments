@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../contextAPI/context';
 
 const CreateForm = () => {
-  const { createMessage, user } = useGlobalContext();
+  const { createMessage, user, userLogout } = useGlobalContext();
   const [textValue, setTextValue] = useState();
 
   const handleSubmit = () => {
@@ -23,6 +23,7 @@ const CreateForm = () => {
       <button type='submit' className='main-btn' onClick={handleSubmit}>
         send
       </button>
+      <p onClick={userLogout}>change user</p>
     </Wrapper>
   );
 };
@@ -46,6 +47,19 @@ const Wrapper = styled.form`
     height: 40px;
     position: absolute;
     bottom: 1rem;
+  }
+
+  p {
+    position: absolute;
+    bottom: 1rem;
+    left: 70px;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: color 0.3s ease;
+
+    &:hover {
+      color: var(--dark-blue-color);
+    }
   }
 `;
 

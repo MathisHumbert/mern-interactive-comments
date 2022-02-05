@@ -1,13 +1,15 @@
 import React, { useContext, useEffect, useReducer } from 'react';
 import axios from 'axios';
+import uniqid from 'uniqid';
+import reducer from './reducer';
+
 import {
   FETCH_COMMENTS_ERROR,
   FETCH_COMMENTS_SUCCESS,
   TOGGLE_DELETE_ASIDE,
-  USER_SELECTED,
+  USER_LOGIN,
+  USER_LOGOUT,
 } from './actions';
-import reducer from './reducer';
-import uniqid from 'uniqid';
 
 const url = '/api/v1/comments';
 
@@ -29,7 +31,7 @@ const AppContext = React.createContext();
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
-  const userSelected = (name) => {
+  const userLogin = (name) => {
     const user = {
       image: {
         png: `./images/avatars/image-${name}.png`,
@@ -37,8 +39,13 @@ const AppProvider = ({ children }) => {
       username: name,
     };
 
-    dispatch({ type: USER_SELECTED, payload: user });
+    dispatch({ type: USER_LOGIN, payload: user });
     localStorage.setItem('user', JSON.stringify(user));
+  };
+
+  const userLogout = () => {
+    dispatch({ type: USER_LOGOUT });
+    localStorage.removeItem('user');
   };
 
   const toggleDeleteAside = (id, replyID) => {
@@ -140,7 +147,8 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
-        userSelected,
+        userLogin,
+        userLogout,
         toggleDeleteAside,
         createReply,
         createMessage,
