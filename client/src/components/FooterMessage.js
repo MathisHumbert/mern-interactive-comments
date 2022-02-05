@@ -2,10 +2,13 @@ import styled from 'styled-components';
 import ReplyBtn from './ReplyBtn';
 import UpvoteBtn from './UpvoteBtn';
 import EditDeleteBtn from './EditDeleteBtn';
-
-const user = 'juliusomo';
+import { useGlobalContext } from '../contextAPI/context';
 
 const FooterMessage = ({ username, id, setReply, setEdit, replyID, score }) => {
+  const {
+    user: { username: user },
+  } = useGlobalContext();
+
   return (
     <Wrapper>
       <UpvoteBtn id={id} replyID={replyID} score={score} />

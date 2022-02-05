@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { useGlobalContext } from '../contextAPI/context';
 
 const CreateForm = () => {
-  const { createMessage } = useGlobalContext();
+  const { createMessage, user } = useGlobalContext();
   const [textValue, setTextValue] = useState();
 
   const handleSubmit = () => {
@@ -15,7 +15,7 @@ const CreateForm = () => {
 
   return (
     <Wrapper onSubmit={(e) => e.preventDefault()}>
-      <img src='./images/avatars/image-juliusomo.png' alt='user-img' />
+      <img src={user.image.png} alt={user.name} />
       <textarea
         value={textValue}
         onChange={(e) => setTextValue(e.target.value)}

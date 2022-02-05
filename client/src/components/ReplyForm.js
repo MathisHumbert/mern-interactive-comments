@@ -4,7 +4,7 @@ import { useGlobalContext } from '../contextAPI/context';
 
 const ReplyForm = ({ id, username, setReply }) => {
   const [textValue, setTextValue] = useState(`@${username}`);
-  const { createReply } = useGlobalContext();
+  const { createReply, user } = useGlobalContext();
 
   const handleSubmit = () => {
     if (textValue.trim() === `@${username}`) return;
@@ -16,7 +16,7 @@ const ReplyForm = ({ id, username, setReply }) => {
 
   return (
     <Wrapper onSubmit={(e) => e.preventDefault()}>
-      <img src='./images/avatars/image-juliusomo.png' alt='user-img' />
+      <img src={user.image.png} alt={user.name} />
       <textarea
         value={textValue}
         onChange={(e) => setTextValue(e.target.value)}

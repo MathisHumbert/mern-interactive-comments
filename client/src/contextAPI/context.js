@@ -4,21 +4,18 @@ import {
   FETCH_COMMENTS_ERROR,
   FETCH_COMMENTS_SUCCESS,
   TOGGLE_DELETE_ASIDE,
+  USER_SELECTED,
 } from './actions';
 import reducer from './reducer';
 import uniqid from 'uniqid';
 
-const user = {
-  image: {
-    png: './images/avatars/image-juliusomo.png',
-    webp: './images/avatars/image-juliusomo.webp',
-  },
-  username: 'juliusomo',
-};
-
 const url = '/api/v1/comments';
 
+const localUser = JSON.parse(localStorage.getItem('user')) || {};
+
 const initialState = {
+  mounted: localUser.username ? true : false,
+  user: localUser,
   loading: true,
   error: false,
   messages: [],
@@ -31,6 +28,18 @@ const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
+
+  const userSelected = (name) => {
+    const user = {
+      image: {
+        png: `./images/avatars/image-${name}.png`,
+      },
+      username: name,
+    };
+
+    dispatch({ type: USER_SELECTED, payload: user });
+    localStorage.setItem('user', JSON.stringify(user));
+  };
 
   const toggleDeleteAside = (id, replyID) => {
     dispatch({ type: TOGGLE_DELETE_ASIDE, payload: { id, replyID } });
@@ -53,7 +62,7 @@ const AppProvider = ({ children }) => {
       createdAt: 'Today',
       score: 0,
       replyingTo,
-      user,
+      user: state.user,
     };
 
     try {
@@ -72,7 +81,7 @@ const AppProvider = ({ children }) => {
       content,
       createdAt: 'Today',
       score: 0,
-      user,
+      user: state.user,
       replies: [],
     };
 
@@ -131,6 +140,7 @@ const AppProvider = ({ children }) => {
     <AppContext.Provider
       value={{
         ...state,
+        userSelected,
         toggleDeleteAside,
         createReply,
         createMessage,

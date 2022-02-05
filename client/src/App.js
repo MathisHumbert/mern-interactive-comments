@@ -2,10 +2,15 @@ import styled from 'styled-components';
 import CreateForm from './components/CreateForm';
 import DeleteAside from './components/DeleteAside';
 import MessageContainer from './components/MessageContainer';
+import SelectUser from './components/SelectUser';
 import { useGlobalContext } from './contextAPI/context';
 
 const App = () => {
-  const { messages, loading, error } = useGlobalContext();
+  const { messages, loading, error, mounted } = useGlobalContext();
+
+  if (!mounted) {
+    return <SelectUser />;
+  }
 
   if (loading) {
     return <h1>loading...</h1>;

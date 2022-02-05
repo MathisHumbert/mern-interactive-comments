@@ -1,8 +1,11 @@
 import styled from 'styled-components';
-
-const user = 'juliusomo';
+import { useGlobalContext } from '../contextAPI/context';
 
 const HeaderMessage = ({ image, username, createdAt }) => {
+  const {
+    user: { username: user },
+  } = useGlobalContext();
+
   return (
     <Wrapper>
       <img src={image.png} alt={username} />
