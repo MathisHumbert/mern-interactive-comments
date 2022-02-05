@@ -13,11 +13,15 @@ const App = () => {
   }
 
   if (loading) {
-    return <h1>loading...</h1>;
+    return <div className='loading'></div>;
   }
 
   if (error) {
-    return <h1>error...</h1>;
+    return (
+      <h1 className='error'>
+        There seems to be an error. <br /> Refresh the page
+      </h1>
+    );
   }
 
   return (

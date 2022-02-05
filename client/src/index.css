@@ -81,3 +81,23 @@ textarea:focus {
 .main-btn:hover {
   background: var(--light-grayish-blue-color);
 }
+
+.error {
+  text-align: center;
+}
+
+.loading {
+  width: 3rem;
+  height: 3rem;
+  border: 3px solid #dbd8d6;
+  border-radius: 50%;
+  border-top-color: var(--moderate-blue-color);
+  animation: spinner 1s linear infinite;
+  margin: 6rem auto;
+}
+
+@keyframes spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
