@@ -110,6 +110,19 @@ const AppProvider = ({ children }) => {
     fetchMessages();
   };
 
+  const toggleUpvotes = async (action, id, replyID) => {
+    console.log(action, id, replyID);
+
+    try {
+      await axios.patch(`${url}/upvote`, { action, id, replyID: replyID });
+    } catch (error) {
+      console.log(error);
+      dispatch({ type: FETCH_COMMENTS_ERROR });
+    }
+
+    fetchMessages();
+  };
+
   useEffect(() => {
     fetchMessages();
   }, []);
@@ -123,6 +136,7 @@ const AppProvider = ({ children }) => {
         createMessage,
         editMessage,
         deleteMessage,
+        toggleUpvotes,
       }}
     >
       {children}

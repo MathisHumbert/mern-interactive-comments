@@ -16,7 +16,7 @@ router
   .post(createMessage)
   .patch(editMessage)
   .delete(deleteComment);
-router.patch('/upvote/:id', toggleUpvote);
+router.patch('/upvote', toggleUpvote);
 router.patch('/:id', createReply);
 
 module.exports = router;

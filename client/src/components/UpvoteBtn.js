@@ -1,12 +1,21 @@
 import styled from 'styled-components';
 import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useGlobalContext } from '../contextAPI/context';
 
 const UpvoteBtn = ({ id, replyID, score }) => {
+  const { toggleUpvotes } = useGlobalContext();
+
   return (
     <Wrapper className='upvote-btn'>
-      <FaPlus className='icon' />
+      <FaPlus
+        className='icon'
+        onClick={() => toggleUpvotes('add', id, replyID)}
+      />
       <h2>{score}</h2>
-      <FaMinus className='icon' />
+      <FaMinus
+        className='icon'
+        onClick={() => toggleUpvotes('subtract', id, replyID)}
+      />
     </Wrapper>
   );
 };

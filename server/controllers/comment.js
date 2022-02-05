@@ -63,7 +63,38 @@ const deleteComment = async (req, res) => {
   res.status(StatusCodes.OK).json({ msg: 'Message Deleted' });
 };
 
-const toggleUpvote = (req, res) => {
+const toggleUpvote = async (req, res) => {
+  const { action, id, replyID } = req.body;
+
+  const comment = await Comment.findOne({ id });
+  if (!replyID) {
+    let newScore;
+    if (action === 'add') {
+      newScore = comment.score + 1;
+    } else {
+      newScore = comment.score - 1;
+    }
+    if (newScore < 0) {
+      newScore = 0;
+    }
+    await Comment.findOneAndUpdate({ id }, { score: newScore });
+  } else {
+    const newReplies = comment.replies.map((item) => {
+      if (item.id === replyID) {
+        if (action === 'add') {
+          item.score += 1;
+        } else {
+          item.score -= 1;
+        }
+        if (item.score < 0) {
+          item.score = 0;
+        }
+      }
+      return item;
+    });
+    await Comment.findOneAndUpdate({ id }, { replies: newReplies });
+  }
+
   res.send('toggle upvote');
 };
 
